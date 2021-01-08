@@ -13,7 +13,6 @@ const Max = () => {
   let isLaughing = useRef(true);
   let isLoading = useRef(true);
   let isLooking = useRef('front');
-  let isProcessing = useRef(true);
 
 
   setTimeout(() => {
