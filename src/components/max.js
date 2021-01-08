@@ -6,16 +6,19 @@ console.log(window.location.search);
 
 const Max = () => {
   const [photogram, setPhotogram] = useState(PHOTOGRAMS[0]);
+
   const [laughSwitcher, setLaughSwitcher] = useState(false);
 
   let laughingInterval = useRef(null);
   let isLaughing = useRef(true);
   let isLoading = useRef(true);
   let isLooking = useRef('front');
+  let isProcessing = useRef(true);
+
 
   setTimeout(() => {
     isLoading.current = false;
-  }, 15000)
+  }, 15000);
 
   const talk = (e) => {
     console.log(e.keyCode);
@@ -41,9 +44,11 @@ const Max = () => {
           }
           break;
         case 97:
+        case 49:
           setLaughSwitcher(!laughSwitcher);
           break;
         case 100:
+        case 52:
           if(isLooking.current === 'left') {
             isLooking.current = 'front';
           } else {
@@ -51,6 +56,7 @@ const Max = () => {
           }
           break;
         case 102:
+        case 54:
           if(isLooking.current === 'right') {
             isLooking.current = 'front';
           } else {
@@ -120,7 +126,8 @@ const Max = () => {
 
   return (
     <div className={'max'}>
-      <p tabIndex="0" onKeyDown={talk} onKeyUp={shutUp}>{photogram.image}</p>
+      <p tabIndex="0" onKeyDown={talk} onKeyUp={shutUp}>{photogram.image.map(i => i)}</p>
+      {/*<p tabIndex="0">{photogram.image.map(i => i)}</p>*/}
     </div>
   );
 };
