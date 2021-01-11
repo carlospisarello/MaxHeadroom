@@ -133,7 +133,7 @@ const Max = () => {
 
     return (
       processedRow.map(i => {
-        if(i[0] == '@') {
+        if(i[0] === '@') {
           return <span className={'invisible'}>{i}</span>
         } return <span className={'visible'}>{i}</span>
       })
