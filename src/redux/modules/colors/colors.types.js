@@ -1,0 +1,2 @@
+export const SET_BACKGROUND_COLOR = 'SET_BACKGROUND_COLOR';
+export const SET_MAX_COLOR = 'SET_MAX_COLOR';

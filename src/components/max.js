@@ -1,19 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './max.scss';
-import {PHOTOGRAMS} from "../data/photograms";
-
-console.log(window.location.search);
+import {PHOTOGRAMS, BACKGROUNDS} from "../data/photograms";
+import Background from "./background";
+import Console from "./console";
 
 const Max = () => {
   const [photogram, setPhotogram] = useState(PHOTOGRAMS[0]);
-
   const [laughSwitcher, setLaughSwitcher] = useState(false);
-
-  let laughingInterval = useRef(null);
-  let isLaughing = useRef(true);
-  let isLoading = useRef(true);
-  let isLooking = useRef('front');
-
+  const laughingInterval = useRef(null);
+  const isLaughing = useRef(true);
+  const isLoading = useRef(true);
+  const isLooking = useRef('front');
 
   setTimeout(() => {
     isLoading.current = false;
@@ -123,10 +120,33 @@ const Max = () => {
     }, 200)
   }
 
+  const renderImageRow = (row) => {
+    const regex = /[^@]+/g;
+    const result = regex.exec(row);
+    let processedRow;
+    if(result) {
+      processedRow = row.split(result);
+      processedRow.splice(1, 0, result[0]);
+    } else {
+      processedRow = [row];
+    }
+
+    return (
+      processedRow.map(i => {
+        if(i[0] == '@') {
+          return <span className={'invisible'}>{i}</span>
+        } return <span className={'visible'}>{i}</span>
+      })
+    )
+  };
+
   return (
-    <div className={'max'}>
-      <p tabIndex="0" onKeyDown={talk} onKeyUp={shutUp}>{photogram.image.map(i => i)}</p>
-      {/*<p tabIndex="0">{photogram.image.map(i => i)}</p>*/}
+    <div className={'screen'}>
+      <div className={'max'}>
+        <p tabIndex="0" onKeyDown={talk} onKeyUp={shutUp}>{photogram.image.map(i => renderImageRow(i))}</p>
+        <Background background={BACKGROUNDS[0]}/>
+      </div>
+      <Console/>
     </div>
   );
 };

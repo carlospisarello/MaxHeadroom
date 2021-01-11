@@ -1,9 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-.max {
+.screen {
   width: 800px;
+}
+.max {
+  width: 100%;
   margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   p {
+    margin: 0;
+    z-index: 2;
+    white-space: pre-line;
     width: 100%;
     font-size: 12.5px;
     font-family: VT323;
@@ -14,8 +26,19 @@
     &:focus {
       outline: none;
     }
+    .invisible {
+      color: transparent;
+    }
+    .visible {
+      background-color: black;
+    }
   }
 }
+
+@keyframes rotate-background {
+
+}
+
 
 @keyframes text {
   from {

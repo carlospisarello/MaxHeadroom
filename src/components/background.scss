@@ -1,0 +1,55 @@
+.background {
+  z-index: 1;
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  .face {
+    color: inherit;
+    opacity: .5;
+    background-color: black;
+    word-break: break-all;
+    font-family: VT323;
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    transform: translateY(50%);
+    display: flex;
+    flex-direction: column;
+    font-size: 50px;
+  }
+
+  .top {
+    transform-origin: top center;
+    top: 0;
+    transform: rotateX(-90deg) translateZ(-400px);
+  }
+
+  .bottom {
+    transform-origin: bottom center;
+    bottom: 0;
+    transform: rotateX(90deg) translateZ(-400px);
+  }
+
+  .right {
+    transform-origin: center right;
+    right: 0;
+    transform: rotateY(-90deg) translateZ(-400px);
+  }
+
+  .back {
+    top: 0;
+    transform: translateY(-25%) translateZ(-1600px) !important;
+  }
+
+  .left {
+    transform-origin: center left;
+    left: 0;
+    transform: rotateY(90deg) translateZ(-400px);
+  }
+
+}
