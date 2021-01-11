@@ -17,7 +17,6 @@ const Max = () => {
   }, 15000);
 
   const talk = (e) => {
-    console.log(e.keyCode);
     if(!isLoading.current) {
       switch (e.keyCode) {
         case 48:
@@ -132,10 +131,10 @@ const Max = () => {
     }
 
     return (
-      processedRow.map(i => {
+      processedRow.map((i, idx) => {
         if(i[0] === '@') {
-          return <span className={'invisible'}>{i}</span>
-        } return <span className={'visible'}>{i}</span>
+          return <span key={idx} className={'invisible'}>{i}</span>
+        } return <span key={idx} className={'visible'}>{i}</span>
       })
     )
   };
@@ -143,7 +142,7 @@ const Max = () => {
   return (
     <div className={'screen'}>
       <div className={'max'}>
-        <p tabIndex="0" onKeyDown={talk} onKeyUp={shutUp}>{photogram.image.map(i => renderImageRow(i))}</p>
+        <p tabIndex="0" onKeyDown={talk} onKeyUp={shutUp}>{photogram.image.map((i) => renderImageRow(i))}</p>
         <Background background={BACKGROUNDS[0]}/>
       </div>
       <Console/>

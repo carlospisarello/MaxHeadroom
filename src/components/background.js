@@ -26,7 +26,7 @@ const Background = ({background}) => {
 
   const renderBackground = (bg) => {
     return (
-      bg.map(row => <span>{row}</span>)
+      bg.map((row, idx) => <span key={idx}>{row}</span>)
     );
   };
 
@@ -40,7 +40,6 @@ const Background = ({background}) => {
         rotateY: `${randomIntFromInterval(-40, 40)}deg`,
       });
       if(i === 49 ) {
-        console.log(frames);
         setFrames(frames)
       }
     }
@@ -48,6 +47,7 @@ const Background = ({background}) => {
 
   useEffect(() => {
     generateFrames();
+    //eslint-disable-next-line
   }, []);
 
   const styles = {
